@@ -1,5 +1,4 @@
-fastapi==0.115.8
+fastapi[all]
 openai==1.63.0
 pretty_midi==0.2.9
 pydantic==2.10.6
-uvicorn==0.34.0
