@@ -18,7 +18,7 @@ async function generateMIDI() {
     }
 
     loading.style.display = "flex";
-   // renderBlock.classList.add("hidden"); // Hide the render block initially
+    renderBlock.classList.add("hidden"); // Hide the render block initially
 
     try {
         const response = await fetch("/generate-midi", {
@@ -47,15 +47,6 @@ async function generateMIDI() {
         alert("Error generating MIDI: " + error.message);
         loading.style.display = "none";
     }
-}
-
-
-function playMIDI() {
-    // Existing playMIDI function
-}
-
-function stopMIDI() {
-    // Existing stopMIDI function
 }
 
 function clearAll() {
