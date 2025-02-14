@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI MIDI Generator</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.26/Tone.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tonejs/midi"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/combine/npm/tone@14.7.58,npm/@magenta/music@1.23.1/es6/core.js,npm/focus-visible@5,npm/html-midi-player@1.4.0"></script>
+</head>
+<body>
+    
+    <div id="description">
+    <h1>AI MIDI Generator</h1>
+    <p>This is an experiment to generate midi notes with GPT-4o. The output is generated in JSON which it then converted into a midi file with <a href="https://github.com/craffel/pretty-midi" target="_blank">Pretty midi</a>. The midi player is provided by <a href="https://github.com/cifkao/html-midi-player" target="_blank">html-midi-player</a>.You can find the whole project including the next features on <a href="https://github.com/nathanbenhamou/aimidigenerator" target="_blank">Github</a>. Please reach out if you have feedback or if you want to contribute.</p>
+    </div>
+
+    <div class="main-container">
+        <!-- Left Block -->
+        <div class="block left-block">
+            <h5>1. Type your prompt</h5>
+
+            <div class="duration-tempo-container">
+                <div>
+                    <label for="duration">Duration (in bars):</label>
+                    <input type="number" id="duration" placeholder="Duration" value="1" min="1" step="1">
+                </div>
+                <div>
+                    <label for="tempo">Tempo (bpm):</label>
+                    <input type="number" id="tempo" placeholder="Tempo" value="128" step="0.1">
+                </div>
+            </div>
+
+            <label for="prompt">Prompt:</label>
+            <textarea id="prompt" placeholder="Enter a prompt (e.g., 'Neo Soul Chords 110bpm')"></textarea>
+            
+            <button onclick="generateMIDI()">Generate MIDI</button>
+        </div>
+
+        <!-- Right Block -->
+        <div class="block right-block">
+            <h5>2. Results</h5>
+            <p id="placeholder-text">Submit a prompt first</p>
+
+            <div id="render" class="hidden">
+                <midi-player id="midi-player"
+                    sound-font visualizer="#myVisualizer">
+                    </midi-player>
+                <midi-visualizer type="piano-roll" id="myVisualizer"></midi-visualizer>
+                <a id="download" href="#" download="">Download MIDI file</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="loading" class="loading">Generating MIDI...</div>
+
+    <script src="/static/script.js" defer></script>
+
+</body>
+</html>
